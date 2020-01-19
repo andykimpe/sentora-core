@@ -206,7 +206,9 @@ function WriteVhostConfigFile()
                 $line .= "  AllowOverride All" . fs_filehandler::NewLine();
                 $line .= "  Require all granted" . fs_filehandler::NewLine();
                 $line .= "</Directory>" . fs_filehandler::NewLine();
-                $line .= ctrl_options::GetSystemOption('php_handler') . fs_filehandler::NewLine();
+                $line .= "<FilesMatch \.php$>" . fs_filehandler::NewLine();
+                $line .= "SetHandler \"proxy:unix:/run/php-fpm/www.sock|fcgi://localhost:9071\"" . fs_filehandler::NewLine();
+                $line .= "</FilesMatch>" . fs_filehandler::NewLine();
                 $line .= ctrl_options::GetSystemOption('dir_index') . fs_filehandler::NewLine();
 				// Client custom vh entry
 				$line .= "# Custom VH settings (if any exist)" . fs_filehandler::NewLine();
@@ -241,7 +243,9 @@ function WriteVhostConfigFile()
                 $line .= "  AllowOverride All" . fs_filehandler::NewLine();
                 $line .= "  Require all granted" . fs_filehandler::NewLine();
                 $line .= "</Directory>" . fs_filehandler::NewLine();
-                $line .= ctrl_options::GetSystemOption('php_handler') . fs_filehandler::NewLine();
+				$line .= "<FilesMatch \.php$>" . fs_filehandler::NewLine();
+                $line .= "SetHandler \"proxy:unix:/run/php-fpm/www.sock|fcgi://localhost:9071\"" . fs_filehandler::NewLine();
+                $line .= "</FilesMatch>" . fs_filehandler::NewLine();
                 $line .= ctrl_options::GetSystemOption('dir_index') . fs_filehandler::NewLine();
 				// Client custom vh entry
 				$line .= "# Custom VH settings (if any exist)" . fs_filehandler::NewLine();
@@ -275,7 +279,9 @@ function WriteVhostConfigFile()
                 $line .= "  AllowOverride All" . fs_filehandler::NewLine();
                 $line .= "  Require all granted" . fs_filehandler::NewLine();
                 $line .= "</Directory>" . fs_filehandler::NewLine();
-                $line .= ctrl_options::GetSystemOption('php_handler') . fs_filehandler::NewLine();
+                $line .= "<FilesMatch \.php$>" . fs_filehandler::NewLine();
+                $line .= "SetHandler \"proxy:unix:/run/php-fpm/www.sock|fcgi://localhost:9071\"" . fs_filehandler::NewLine();
+                $line .= "</FilesMatch>" . fs_filehandler::NewLine();
                 $line .= ctrl_options::GetSystemOption('dir_index') . fs_filehandler::NewLine();
                 $line .= "# Custom Global Settings (if any exist)" . fs_filehandler::NewLine();
                 $line .= ctrl_options::GetSystemOption('global_vhcustom') . fs_filehandler::NewLine();
