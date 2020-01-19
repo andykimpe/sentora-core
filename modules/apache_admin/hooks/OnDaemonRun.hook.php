@@ -102,7 +102,9 @@ function WriteVhostConfigFile()
     $line .= 'ErrorLog "' . ctrl_options::GetSystemOption('log_dir') . 'sentora-error.log" ' . fs_filehandler::NewLine();
     $line .= 'CustomLog "' . ctrl_options::GetSystemOption('log_dir') . 'sentora-access.log" ' . ctrl_options::GetSystemOption('access_log_format') . fs_filehandler::NewLine();
     $line .= 'CustomLog "' . ctrl_options::GetSystemOption('log_dir') . 'sentora-bandwidth.log" ' . ctrl_options::GetSystemOption('bandwidth_log_format') . fs_filehandler::NewLine();
-    $line .= "AddType application/x-httpd-php .php" . fs_filehandler::NewLine();
+    $line .= "<FilesMatch \.php$>" . fs_filehandler::NewLine();
+    $line .= "SetHandler \"proxy:fcgi://127.0.0.1:9071\"" . fs_filehandler::NewLine();
+    $line .= "</FilesMatch>" . fs_filehandler::NewLine();
 	// Error documents:- Error pages are added automatically if they are found in the /etc/static/errorpages
 	// directory and if they are a valid error code, and saved in the proper format, i.e. <error_number>.html
 	$errorpages = ctrl_options::GetSystemOption('sentora_root') . "/etc/static/errorpages";
